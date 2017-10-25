@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <title>Preguntas</title>
+    <link rel='stylesheet' type='text/css' href='estilos/style.css' />
+    <link rel='stylesheet'
+          type='text/css'
+          media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+          href='estilos/wide.css' />
+    <link rel='stylesheet'
+          type='text/css'
+          media='only screen and (max-width: 480px)'
+          href='estilos/smartphone.css' />
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<div id='page-wrap'>
+    <header class='main' id='h1'>
+        <span class="right"><a href="registro">Registrarse</a></span>
+        <span class="right"><a href="login">Login</a></span>
+        <span class="right" style="display:none;"><a href="/logout">Logout</a></span>
+        <h2>Quiz: el juego de las preguntas</h2>
+    </header>
+    <nav class='main' id='n1' role='navigation'><span><a href='./layout.html'>Inicio</a></span>
+        <span><a href='./preguntasHTML5.html'>Preguntas</a></span>
+        <span><a href='./creditos.html'>Creditos</a></span>
+    </nav>
+    <section class="main" id="s1" style="height: auto">
+        <div align="center">
+            <form id="fpreguntas" name="fpreguntas" enctype="multipart/form-data" action="InsertarPreguntaConImagen.php" method="POST">
+                <fieldset>
+                    <legend>Datos de la pregunta:</legend>
+                    <table>
+                        <tr>
+                            <td style="width: 50%">
+                                <label for="input_email">Email:*</label>
+                                <input id="input_email" name="email" type="text" required pattern=^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$ title="Ej: crivas004@ikasle.ehu.es"><br>
+                                <label for="input_question">Enunciado de la pregunta:*</label>
+                                <input id="input_question" name="question" type="text" required pattern=^.{10,}$ title="Mínimo 10 caracteres."><br>
+                                <label for="input_correct_answer">Respuesta correcta:*</label>
+                                <input id="input_correct_answer" name="correctAnswer" type="text" required><br>
+                                <label for="input_incorrect_answer_1">Respuesta incorrecta 1:*</label>
+                                <input id="input_incorrect_answer_1" name="incorrectAnswer1" type="text" required><br>
+                                <label for="input_incorrect_answer_2">Respuesta incorrecta 2:*</label>
+                                <input id="input_incorrect_answer_2" name="incorrectAnswer2" type="text" required><br>
+                                <label for="input_incorrect_answer_3">Respuesta incorrecta 3:*</label>
+                                <input id="input_incorrect_answer_3" name="incorrectAnswer3" type="text" required><br>
+                                <label for="input_conplexity">Complejidad:*</label>
+                                <input id="input_conplexity" name="complexity" type="number" required min="1" max="5"><br>
+                                <label for="input_topic">Tema:*</label>
+                                <input id="input_topic" name="topic" type="text" required><br>
+                                <label for="input_file">Image:</label>
+                                <input type="file" id="input_file" name="inputFile"/><br>
+                                <button type="submit">Enviar solicitud</button>
+                            </td>
+                            <td align="center">
+                                <img id="img_question" src="resources/empty_image.png" alt="Imagen " style="background-color: white; border: solid 2px white; width: 128px">
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+    <footer class='main' id='f1'>
+        <p><a href="http://es.wikipedia.org/wiki/Quiz" target="_blank">Que es un Quiz?</a></p>
+        <a href='https://github.com'>Link GITHUB</a>
+    </footer>
+</div>
+<script>
+    function handleFileSelect(event) {
+        // Get the file selected by the user
+        var file = event.target.files[0];
+        console.log(file);
+
+        // Check if the file is an image
+        if (!file.type.match('image.*')) {
+            // Clear selected file path and image
+            $(event.target).val("");
+            $("#img_question").attr("src", "resources/empty_image.png");
+            return;
+        }
+
+        // User FileReader for reading the file
+        var fileReader = new FileReader();
+
+        // Select FileReaders behaviour when the file is readed
+        fileReader.onload = function (event) {
+            $("#img_question").attr("src", event.target.result);
+        }
+
+        // Read file for getting its URL
+        fileReader.readAsDataURL(file);
+    }
+
+    $("#input_file").on("change", handleFileSelect);
+</script>
+</body>
+</html>
