@@ -27,6 +27,8 @@ if (isset($_POST['email'])) {
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
 
+    $image = addslashes(file_get_contents($_FILES['inputFile']['tmp_name']));
+
     $sql = "INSERT INTO usuarios VALUES ('$email','$name_lastnames','$nick','$password')";
     if(!mysqli_query($link, $sql))
     {

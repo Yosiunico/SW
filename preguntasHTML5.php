@@ -34,17 +34,15 @@
     </nav>
     <section class="main" id="s1" style="height: auto">
         <div align="center">
-            <form id="fpreguntas" name="fpreguntas" enctype="multipart/form-data" action="InsertarPreguntaConImagen.php" method="POST">
+            <?php
+            $email = $_GET['logged_user'];
+            echo '<form id="fpreguntas" name="fpreguntas" enctype="multipart/form-data" action="InsertarPreguntaConImagen.php?logged_user=' . $email . '" method="POST">';
+            ?>
                 <fieldset>
                     <legend>Datos de la pregunta:</legend>
                     <table>
                         <tr>
                             <td style="width: 50%">
-                                <label for="input_email">Email:*</label>
-                                <?php
-                                $email = $_GET['logged_user'];
-                                echo '<input id="input_email" name="email" type="text" value="' . $email . '" title="Ej: crivas004@ikasle.ehu.es" disabled><br>';
-                                ?>
                                 <label for="input_question">Enunciado de la pregunta:*</label>
                                 <input id="input_question" name="question" type="text" title="Mínimo 10 caracteres."><br>
                                 <label for="input_correct_answer">Respuesta correcta:*</label>

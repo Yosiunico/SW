@@ -4,7 +4,7 @@
 
 
 
-    $mail = $_POST['email'];
+    $email = $_GET['logged_user'];
     $question = $_POST['question'];
     $correctAnswer = $_POST['correctAnswer'];
     $incorrectAnswer1 = $_POST['incorrectAnswer1'];
@@ -12,12 +12,12 @@
     $incorrectAnswer3 = $_POST['incorrectAnswer3'];
     $complexity = $_POST['complexity'];
     $topic = $_POST['topic'];
-    $isCorrect = verify($mail, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic);
+    $isCorrect = verify($email, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic);
 
 
     if($isCorrect){
         $image = addslashes(file_get_contents($_FILES['inputFile']['tmp_name']));
-        $sql = "INSERT INTO preguntas(mail,question,correct_answer,incorrect_answer_1, incorrect_answer_2, incorrect_answer_3, complexity, topic,image) VALUES ('$mail','$question','$correctAnswer','$incorrectAnswer1','$incorrectAnswer2','$incorrectAnswer3','$complexity','$topic','$image')";
+        $sql = "INSERT INTO preguntas(email,question,correct_answer,incorrect_answer_1, incorrect_answer_2, incorrect_answer_3, complexity, topic,image) VALUES ('$email','$question','$correctAnswer','$incorrectAnswer1','$incorrectAnswer2','$incorrectAnswer3','$complexity','$topic','$image')";
 
 
         if(!mysqli_query($link, $sql))
