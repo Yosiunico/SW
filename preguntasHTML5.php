@@ -41,7 +41,10 @@
                         <tr>
                             <td style="width: 50%">
                                 <label for="input_email">Email:*</label>
-                                <input id="input_email" name="email" type="text" title="Ej: crivas004@ikasle.ehu.es"><br>
+                                <?php
+                                $email = $_GET['logged_user'];
+                                echo '<input id="input_email" name="email" type="text" value="' . $email . '" title="Ej: crivas004@ikasle.ehu.es" disabled><br>';
+                                ?>
                                 <label for="input_question">Enunciado de la pregunta:*</label>
                                 <input id="input_question" name="question" type="text" title="Mínimo 10 caracteres."><br>
                                 <label for="input_correct_answer">Respuesta correcta:*</label>
