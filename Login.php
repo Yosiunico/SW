@@ -22,24 +22,25 @@ if (isset($_POST['email'])) {
     $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
 
     $email = $_POST['email'];
-    $name_lastnames = $_POST['name_lastnames'];
-    $nick = $_POST['nick'];
     $password = $_POST['password'];
-    $repeat_password = $_POST['repeat_password'];
 
-    $sql = "INSERT INTO usuarios VALUES ('$email','$name_lastnames','$nick','$password')";
-    if(!mysqli_query($link, $sql))
-    {
-        alert( "Error de inserción");
+    $usuarios = mysqli_query($link, "select * from usuarios where email='$email' and password='$password'");
+    $cont = mysqli_num_rows($usuarios);
+
+    mysqli_close($link);
+
+    if ($cont == 1) {
+        header("Location: ./layout.php?logged_user=" . $email);
+    } else {
+        alert("Error de identificatión");
     }
-    header('Location: ./layout.php');
 
 
 }
 ?>
 <div id='page-wrap'>
     <header class='main' id='h1'>
-        <span class="right"><a href="./Login.php">Login</a></span>
+        <span class="right"><a href="./Registrar.php">Registrarse</a></span>
         <span class="right" style="display:none;"><a href="/logout">Logout</a></span>
         <h2>Quiz: el juego de las preguntas</h2>
     </header>
@@ -51,21 +52,13 @@ if (isset($_POST['email'])) {
             <!-- Mostrar formulario para registrarse -->
             <fieldset>
 
-                <legend align="center">Registro</legend>
-                <form action="./Registrar.php" method="post">
+                <legend align="center">Login</legend>
+                <form action="./Login.php" method="post">
                     <div style="padding: 20px">
                         <label for="input_email">Email:*</label>
                         <input id="input_email" name="email" title="Ej: crivas004@ikasle.ehu.es" type="text" pattern="^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$" required><br>
-                        <label for="input_name_lastnames">Nombre y apellidos:*</label>
-                        <input id="input_name_lastnames" name="name_lastnames" type="text" pattern="[A-Za-z\s]{2,}" title="Ej: Joseba Merino Pina" required><br>
-                        <label for="input_nick">Nick:*</label>
-                        <input id="input_nick" name="nick" type="text" pattern=".+" required><br>
                         <label for="input_password">Contraseña:*</label>
                         <input id="input_password" name="password" type="password" pattern=".{6,}" required><br>
-                        <label for="input_repeat_password">Repite la contraseña:*</label>
-                        <input id="input_repeat_password" name="repeat_password" type="password" pattern=".{6,}" required ><br>
-                        <label for="input_image">Elegir foto de perfil:</label>
-                        <input id="input_image" name="image" type="file"><br>
 
                         <input type="submit" value="Enviar">
                     </div>

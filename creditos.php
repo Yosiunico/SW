@@ -17,7 +17,7 @@
 <div id='page-wrap'>
 	<header class='main' id='h1'>
 		<span class="right"><a href="./Registrar.php">Registrarse</a></span>
-		<span class="right"><a href="login">Login</a></span>
+		<span class="right"><a href="./Login.php">Login</a></span>
 		<span class="right" style="display:none;"><a href="/logout">Logout</a></span>
 		<h2>Quiz: el juego de las preguntas</h2>
 	</header>
