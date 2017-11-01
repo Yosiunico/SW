@@ -15,6 +15,25 @@
 <body>
 <?php
 if (isset($_POST['email'])) {
+    function alert($msj){
+        echo "<script display='none' type='text/javascript'>alert('$msj'); </script>";
+    }
+    require_once ('config.php');
+    $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
+
+    $email = $_POST['email'];
+    $name_lastnames = $_POST['name_lastnames'];
+    $nick = $_POST['nick'];
+    $password = $_POST['password'];
+    $repeat_password = $_POST['repeat_password'];
+
+    $sql = "INSERT INTO usuarios VALUES ('$email','$name_lastnames','$nick','$password')";
+    if(!mysqli_query($link, $sql))
+    {
+        alert( "Error de inserción");
+    }
+    header('Location: ./layout.html');
+
 
 }
 ?>
