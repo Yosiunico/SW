@@ -44,8 +44,7 @@ if (isset($_POST['email'])) {
         <h2>Quiz: el juego de las preguntas</h2>
     </header>
     <nav class='main' id='n1' role='navigation'><span><a href='layout.php'>Inicio</a></span>
-        <span><a href='./preguntasHTML5.html'>Preguntas</a></span>
-        <span><a href='./creditos.html'>Creditos</a></span>
+        <span><a href='creditos.php'>Creditos</a></span>
     </nav>
     <section class="main" id="s1">
         <div align="left">

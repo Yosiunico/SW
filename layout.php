@@ -28,7 +28,7 @@
             echo "<span><a href='./preguntasHTML5.html'>Preguntas</a></span>";
         }
         ?>
-			<span><a href='./creditos.html'>Creditos</a></span>
+			<span><a href='creditos.php'>Creditos</a></span>
 	</nav>
 	<section class="main" id="s1">
 		<div>
