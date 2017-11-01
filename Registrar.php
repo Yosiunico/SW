@@ -32,7 +32,7 @@ if (isset($_POST['email'])) {
     {
         alert( "Error de inserción");
     }
-    header('Location: ./layout.html');
+    header('Location: ./layout.php');
 
 
 }
@@ -43,7 +43,7 @@ if (isset($_POST['email'])) {
         <span class="right" style="display:none;"><a href="/logout">Logout</a></span>
         <h2>Quiz: el juego de las preguntas</h2>
     </header>
-    <nav class='main' id='n1' role='navigation'><span><a href='./layout.html'>Inicio</a></span>
+    <nav class='main' id='n1' role='navigation'><span><a href='layout.php'>Inicio</a></span>
         <span><a href='./preguntasHTML5.html'>Preguntas</a></span>
         <span><a href='./creditos.html'>Creditos</a></span>
     </nav>
