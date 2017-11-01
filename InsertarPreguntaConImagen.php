@@ -34,7 +34,8 @@
     function verify($mail, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic) {
         $isCorrect = true;
         if(preg_match("/^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$/",$mail) == 0){
-            $isCorrect = false;
+            echo "<p>Fallo en el mail</p>";
+            return false;
         }
         $opciones = array(
             'options' => array(
@@ -43,13 +44,16 @@
             )
         );
         if( filter_var($complexity, FILTER_VALIDATE_INT, $opciones ) == false){
-            $isCorrect = false;
+            echo"<p>Fallo en la complejidad</p>";
+            return false;
         }
         if(preg_match("/^.{10,}$/",$question) == 0){
-            $isCorrect = false;
+            echo "<p>Fallo en la pregunta</p>";
+            return false;
         }
-        if(strlen($correctAnswer) == 0 || strlen($incorrectAnswer1) == 0 || strlen($incorrectAnswer2) == 0 || strlen($incorrectAnswer3) || strlen($topic) == 0){
-            $isCorrect = false;
+        if(strlen($correctAnswer) == 0 || strlen($incorrectAnswer1) == 0 || strlen($incorrectAnswer2) == 0 || strlen($incorrectAnswer3) == 0 || strlen($topic) == 0){
+            echo "<p>Algunos campos estan vacios</p>";
+            return false;
         }
         return $isCorrect;
     }
