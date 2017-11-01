@@ -25,6 +25,19 @@
             echo '<span class="right"><a href="./Login.php">Login</a></span>';
         }
         ?>
+        <div align="right">
+            <?php
+            if(isset($_GET['logged_user'])){
+                require_once('config.php');
+                $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
+                $email = $_GET['logged_user'];
+                $user= mysqli_query($link, "SELECT * FROM usuarios WHERE email =\"".$email."\"");
+                $row = mysqli_fetch_array($user);
+                $image = 'image.png';
+                echo '<img height="42" width="42" src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+            }
+            ?>
+        </div>
 		<h2>Quiz: el juego de las preguntas</h2>
 	</header>
 	<nav class='main' id='n1' role='navigation'>
