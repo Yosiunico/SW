@@ -16,25 +16,33 @@
 <?php
 if (isset($_POST['email'])) {
     function alert($msj){
-        echo "<script display='none' type='text/javascript'>alert('$msj'); </script>";
+        echo "<script type='text/javascript'>alert('$msj'); </script>";
     }
     require_once ('config.php');
     $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
-
+    if (!$link)
+    {
+        echo "Fallo al conectar a MySQL: " . $link->connect_error;
+    }
     $email = $_POST['email'];
     $name_lastnames = $_POST['name_lastnames'];
     $nick = $_POST['nick'];
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
 
-    $image = addslashes(file_get_contents($_FILES['inputFile']['tmp_name']));
+    $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
-    $sql = "INSERT INTO usuarios VALUES ('$email','$name_lastnames','$nick','$password')";
+    alert("Inserting...");
+
+    $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image) VALUES ('$email','$name_lastnames','$nick','$password','$image')";
+
     if(!mysqli_query($link, $sql))
     {
         alert( "Error de inserción");
+        die('Error: '.mysqli_error($link));
+    }else{
+        header('Location: ./layout.php');
     }
-    header('Location: ./layout.php');
 
 
 }
@@ -63,7 +71,7 @@ if (isset($_POST['email'])) {
             <fieldset>
 
                 <legend align="center">Registro</legend>
-                <form action="./Registrar.php" method="post">
+                <form action="./Registrar.php" enctype="multipart/form-data" method="POST">
                     <div style="padding: 20px">
                         <label for="input_email">Email:*</label>
                         <input id="input_email" name="email" title="Ej: crivas004@ikasle.ehu.es" type="text" pattern="^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$" required><br>
