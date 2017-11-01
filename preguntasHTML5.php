@@ -17,12 +17,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <div id='page-wrap'>
     <header class='main' id='h1'>
-        <span class="right" ><a href="/logout">Logout</a></span>
+        <span class="right" ><a href="./layout.php">Logout</a></span>
         <h2>Quiz: el juego de las preguntas</h2>
     </header>
-    <nav class='main' id='n1' role='navigation'><span><a href='layout.php'>Inicio</a></span>
-        <span><a href='./preguntasHTML5.html'>Preguntas</a></span>
-        <span><a href='creditos.php'>Creditos</a></span>
+    <nav class='main' id='n1' role='navigation'>
+        <?php
+            if (isset($_GET['logged_user'])) {
+                echo "<span><a href='layout.php?logged_user=" . $_GET['logged_user'] . "'>Inicio</a></span>";
+                echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_GET['logged_user'] . "'>Preguntas</a></span>";
+                echo "<span><a href='./creditos.php?logged_user=" . $_GET['logged_user'] . "'>Creditos</a></span>";
+            } else {
+                echo "<span><a href='layout.php'>Inicio</a></span>";
+                echo "<span><a href='./creditos.php'>Creditos</a></span>";
+            }
+        ?>
     </nav>
     <section class="main" id="s1" style="height: auto">
         <div align="center">

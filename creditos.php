@@ -16,18 +16,28 @@
 <body>
 <div id='page-wrap'>
 	<header class='main' id='h1'>
-		<span class="right"><a href="./Registrar.php">Registrarse</a></span>
-		<span class="right"><a href="./Login.php">Login</a></span>
-		<span class="right" style="display:none;"><a href="/logout">Logout</a></span>
-		<h2>Quiz: el juego de las preguntas</h2>
-	</header>
-	<nav class='main' id='n1' role='navigation'><span><a href='layout.php'>Inicio</a></span>
         <?php
-        if (isset($_POST['logged_user'])) {
-            echo "<span><a href='./preguntasHTML5.html'>Preguntas</a></span>";
+        if (isset($_GET['logged_user'])) {
+            echo '<span class="right"><a href="./layout.php">Logout</a></span>';
+        } else {
+            echo '<span class="right"><a href="./Registrar.php">Registrarse</a></span>';
+            echo '<span> </span>';
+            echo '<span class="right"><a href="./Login.php">Login</a></span>';
         }
         ?>
-			<span><a href='creditos.php'>Creditos</a></span>
+		<h2>Quiz: el juego de las preguntas</h2>
+	</header>
+	<nav class='main' id='n1' role='navigation'>
+        <?php
+            if (isset($_GET['logged_user'])) {
+                echo "<span><a href='layout.php?logged_user=" . $_GET['logged_user'] . "'>Inicio</a></span>";
+                echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_GET['logged_user'] . "'>Preguntas</a></span>";
+                echo "<span><a href='./creditos.php?logged_user=" . $_GET['logged_user'] . "'>Creditos</a></span>";
+            } else {
+                echo "<span><a href='layout.php'>Inicio</a></span>";
+                echo "<span><a href='./creditos.php'>Creditos</a></span>";
+            }
+        ?>
 	</nav>
 	<section class="main" id="s1">
 		<div>
@@ -35,7 +45,6 @@
 			<p>Especialidad: Ingeniería del Software</p>
 			<img src="./resources/foto_personal.jpg" alt="Foto personal" width="128">
 			<br />
-			<a href="layout.php">Volver a la página principal</a>
 		</div>
 	</section>
 	<footer class='main' id='f1'>
