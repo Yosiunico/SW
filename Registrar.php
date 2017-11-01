@@ -59,11 +59,15 @@ if (isset($_POST['email'])) {
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
     if(verify($email, $name_lastnames, $nick, $password, $repeat_password)){
-        $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+        if($_FILES['image']['size'] > 0) {
+            $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image) VALUES ('$email','$name_lastnames','$nick','$password','$image')";
 
-        alert("Inserting...");
+        }else{
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password) VALUES ('$email','$name_lastnames','$nick','$password')";
 
-        $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image) VALUES ('$email','$name_lastnames','$nick','$password','$image')";
+        }
+
 
         if(!mysqli_query($link, $sql))
         {
