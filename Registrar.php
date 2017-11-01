@@ -18,30 +18,60 @@ if (isset($_POST['email'])) {
     function alert($msj){
         echo "<script type='text/javascript'>alert('$msj'); </script>";
     }
+
+    function verify($email,$name_lastnames,$nick,$password, $repeat_password) {
+        $isCorrect = true;
+        if(preg_match("/^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$/",$email) == 0){
+            echo "<p>Fallo en el mail</p>";
+            return false;
+        }
+
+        if(preg_match("/^[a-zA-Z]{1,}\s[a-zA-Z]{1,}.*$/",$name_lastnames) == 0){
+            echo "<p>Fallo en el nombre</p>";
+            return false;
+        }
+        if(preg_match("/^[a-zA-Z0-9]{1,}$/", $nick)== 0){
+            echo "<p>Fallo en el nick</p>";
+            return false;
+        }
+        if(preg_match("/^.{6,}$/", $password) == 0){
+            echo "<p> Contraseña demasiado corta</p>";
+            return false;
+        }
+        if($password != $repeat_password){
+            echo "<p> Las contraseñas no coinciden</p>";
+            return false;
+        }
+
+        return $isCorrect;
+    }
+
     require_once ('config.php');
     $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
     if (!$link)
     {
         echo "Fallo al conectar a MySQL: " . $link->connect_error;
     }
+
     $email = $_POST['email'];
     $name_lastnames = $_POST['name_lastnames'];
     $nick = $_POST['nick'];
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
+    if(verify($email, $name_lastnames, $nick, $password, $repeat_password)){
+        $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
-    $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+        alert("Inserting...");
 
-    alert("Inserting...");
+        $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image) VALUES ('$email','$name_lastnames','$nick','$password','$image')";
 
-    $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image) VALUES ('$email','$name_lastnames','$nick','$password','$image')";
-
-    if(!mysqli_query($link, $sql))
-    {
-        alert( "Error de inserción");
-        die('Error: '.mysqli_error($link));
-    }else{
-        header('Location: ./layout.php');
+        if(!mysqli_query($link, $sql))
+        {
+            alert( "Error de inserción");
+            die('Error: '.mysqli_error($link));
+        }else{
+            header('Location: ./layout.php');
+        }
     }
 
 
@@ -74,15 +104,15 @@ if (isset($_POST['email'])) {
                 <form action="./Registrar.php" enctype="multipart/form-data" method="POST">
                     <div style="padding: 20px">
                         <label for="input_email">Email:*</label>
-                        <input id="input_email" name="email" title="Ej: crivas004@ikasle.ehu.es" type="text" pattern="^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$" required><br>
+                        <input id="input_email" name="email" title="Ej: crivas004@ikasle.ehu.es" type="text" required><br>
                         <label for="input_name_lastnames">Nombre y apellidos:*</label>
-                        <input id="input_name_lastnames" name="name_lastnames" type="text" pattern="[A-Za-z\s]{2,}" title="Ej: Joseba Merino Pina" required><br>
+                        <input id="input_name_lastnames" name="name_lastnames" type="text"  title="Ej: Joseba Merino" required><br>
                         <label for="input_nick">Nick:*</label>
-                        <input id="input_nick" name="nick" type="text" pattern=".+" required><br>
+                        <input id="input_nick" name="nick" type="text" required><br>
                         <label for="input_password">Contraseña:*</label>
-                        <input id="input_password" name="password" type="password" pattern=".{6,}" required><br>
+                        <input id="input_password" name="password" type="password" required><br>
                         <label for="input_repeat_password">Repite la contraseña:*</label>
-                        <input id="input_repeat_password" name="repeat_password" type="password" pattern=".{6,}" required ><br>
+                        <input id="input_repeat_password" name="repeat_password" type="password"  required ><br>
                         <label for="input_image">Elegir foto de perfil:</label>
                         <input id="input_image" name="image" type="file"><br>
 
