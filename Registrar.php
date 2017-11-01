@@ -22,24 +22,24 @@ if (isset($_POST['email'])) {
     function verify($email,$name_lastnames,$nick,$password, $repeat_password) {
         $isCorrect = true;
         if(preg_match("/^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$/",$email) == 0){
-            echo "<p>Fallo en el mail</p>";
+            alert( "Error en el email");
             return false;
         }
 
         if(preg_match("/^[a-zA-Z]{1,}\s[a-zA-Z]{1,}.*$/",$name_lastnames) == 0){
-            echo "<p>Fallo en el nombre</p>";
+            alert("Error en el nombre y apellidos");
             return false;
         }
         if(preg_match("/^[a-zA-Z0-9]{1,}$/", $nick)== 0){
-            echo "<p>Fallo en el nick</p>";
+            alert("Error en el nick");
             return false;
         }
         if(preg_match("/^.{6,}$/", $password) == 0){
-            echo "<p> Contraseña demasiado corta</p>";
+            alert("Contraseña demasiado corta");
             return false;
         }
         if($password != $repeat_password){
-            echo "<p> Las contraseñas no coinciden</p>";
+            alert("Las contraseñas no coinciden");
             return false;
         }
 
