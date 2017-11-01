@@ -20,14 +20,19 @@
         <span class="right" ><a href="./layout.php">Logout</a></span>
         <div align="right">
             <?php
+            $email;
             if(isset($_GET['logged_user'])){
                 require_once('config.php');
                 $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
                 $email = $_GET['logged_user'];
                 $user= mysqli_query($link, "SELECT * FROM usuarios WHERE email =\"".$email."\"");
                 $row = mysqli_fetch_array($user);
-                $image = 'image.png';
-                echo '<img height="42" width="42" src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+                if (strlen ($row['image'])> 0 ){
+                    $image = 'image.png';
+                    echo '<img height="42" width="42" src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
+                }else{
+                    echo "<p>".$email."</p>";
+                }
             }
             ?>
         </div>
