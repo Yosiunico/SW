@@ -12,7 +12,7 @@
     while ($row = mysqli_fetch_array($preguntas)) {
 
         //echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';//codigo bueno
-        echo '<tr> <td>'. $row['mail'] . '</td><td>'. $row['question'] . '</td><td>'. $row['correct_answer'] . '</td><td>'. $row['incorrect_answer_1'] . '</td><td>'. $row['incorrect_answer_2'] . '</td><td>'. $row['incorrect_answer_3'] . '</td><td>'. $row['complexity'] . '</td><td>'. $row['topic'] . '</td><td>'. '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>' .' </td></tr>';
+        echo '<tr> <td>'. $row['email'] . '</td><td>'. $row['question'] . '</td><td>'. $row['correct_answer'] . '</td><td>'. $row['incorrect_answer_1'] . '</td><td>'. $row['incorrect_answer_2'] . '</td><td>'. $row['incorrect_answer_3'] . '</td><td>'. $row['complexity'] . '</td><td>'. $row['topic'] . '</td><td>'. '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>' .' </td></tr>';
     }
     echo "</table>";
     $preguntas->close();
