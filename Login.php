@@ -15,6 +15,7 @@
 <body>
 <?php
 $show_error = False;
+$email;
 if (isset($_POST['email'])) {
 
     function alert($msj){
@@ -32,7 +33,9 @@ if (isset($_POST['email'])) {
     mysqli_close($link);
 
     if ($cont == 1) {
-        header("Location: ./layout.php?logged_user=" . $email);
+        //header("Location: ./layout.php?logged_user=" . $email);
+
+        echo '<script> location.replace("./layout.php?logged_user='.$email.'"); </script>';
     } else {
         $show_error = True;
     }

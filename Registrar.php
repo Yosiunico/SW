@@ -74,7 +74,8 @@ if (isset($_POST['email'])) {
             alert( "Error de inserción");
             die('Error: '.mysqli_error($link));
         }else{
-            header('Location: ./layout.php');
+            //header('Location: ./layout.php');
+            echo '<script> location.replace("./layout.php"); </script>';
         }
     }
 
