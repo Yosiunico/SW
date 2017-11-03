@@ -27,6 +27,7 @@
         }
         echo "<h1>Insert correcto!</h1><br>";
         echo "<p> <a href=VerPreguntasConImagen.php> Ver Preguntas </a>";
+        echo "<p><a href='preguntas.xml'>Ver preguntas en XML</a></p>";
         echo "<br>";
     }else {
         echo "<h1> Insert incorrecto</h1>";
@@ -78,7 +79,7 @@
         $incorrectresponses->addChild('value', $incorrectAnswer2);
         $incorrectresponses->addChild('value', $incorrectAnswer3);
 
-        $xml->asXML('preguntas2.xml');
+        $xml->asXML('preguntas.xml');
     }
 
 ?>
