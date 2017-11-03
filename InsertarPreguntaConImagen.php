@@ -17,6 +17,7 @@
 
     if($isCorrect){
         $image = addslashes(file_get_contents($_FILES['inputFile']['tmp_name']));
+        insert_in_xml($email, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic);
         $sql = "INSERT INTO preguntas(email,question,correct_answer,incorrect_answer_1, incorrect_answer_2, incorrect_answer_3, complexity, topic,image) VALUES ('$email','$question','$correctAnswer','$incorrectAnswer1','$incorrectAnswer2','$incorrectAnswer3','$complexity','$topic','$image')";
 
 
@@ -56,6 +57,28 @@
             return false;
         }
         return $isCorrect;
+    }
+
+    function insert_in_xml($email, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic){
+        $xml = simplexml_load_file('preguntas.xml');
+        $pregunta = $xml->addChild('assessmentItem');
+
+        $pregunta->addAttribute('complexity', $complexity);
+        $pregunta->addAttribute('subject', $topic );
+        $pregunta->addAttribute('author',$email);
+
+        $itembody = $pregunta->addChild( 'itemBody' );
+        $itembody->addChild('p',$question);
+
+        $correctresponse = $pregunta->addChild('correctResponse');
+        $correctresponse->addChild('value',$correctAnswer);
+
+        $incorrectresponses = $pregunta->addChild('incorrectResponses');
+        $incorrectresponses->addChild('value', $incorrectAnswer1);
+        $incorrectresponses->addChild('value', $incorrectAnswer2);
+        $incorrectresponses->addChild('value', $incorrectAnswer3);
+
+        $xml->asXML('preguntas2.xml');
     }
 
 ?>
