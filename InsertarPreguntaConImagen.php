@@ -16,10 +16,16 @@
 
 
     if($isCorrect){
-        $image = addslashes(file_get_contents($_FILES['inputFile']['tmp_name']));
-        insert_in_xml($email, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic);
-        $sql = "INSERT INTO preguntas(email,question,correct_answer,incorrect_answer_1, incorrect_answer_2, incorrect_answer_3, complexity, topic,image) VALUES ('$email','$question','$correctAnswer','$incorrectAnswer1','$incorrectAnswer2','$incorrectAnswer3','$complexity','$topic','$image')";
 
+        insert_in_xml($email, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic);
+
+        $sql;
+        if(strlen($_FILES['inputFile']['tmp_name']) != 0) {
+            $image = addslashes(file_get_contents($_FILES['inputFile']['tmp_name']));
+            $sql = "INSERT INTO preguntas(email,question,correct_answer,incorrect_answer_1, incorrect_answer_2, incorrect_answer_3, complexity, topic,image) VALUES ('$email','$question','$correctAnswer','$incorrectAnswer1','$incorrectAnswer2','$incorrectAnswer3','$complexity','$topic','$image')";
+        }else{
+            $sql = "INSERT INTO preguntas(email,question,correct_answer,incorrect_answer_1, incorrect_answer_2, incorrect_answer_3, complexity, topic) VALUES ('$email','$question','$correctAnswer','$incorrectAnswer1','$incorrectAnswer2','$incorrectAnswer3','$complexity','$topic')";
+        }
 
         if(!mysqli_query($link, $sql))
         {
