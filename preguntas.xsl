@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
         <html>
-            <body>
+            <body bgcolor="#bebebe">
                 <table border="1">
                     <thead>
                         <tr> <th>ENUNCIADO</th> <th>RESPUESTA CORRECTA</th> <th>RESPUESTAS INCORRECTAS</th> </tr>
