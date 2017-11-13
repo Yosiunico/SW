@@ -13,8 +13,8 @@
         $incorrectAnswer3 = $_POST['incorrectAnswer3'];
         $complexity = $_POST['complexity'];
         $topic = $_POST['topic'];
-        $isCorrect = verify($email, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic);
 
+        $isCorrect = verify($email, $question, $correctAnswer, $incorrectAnswer1, $incorrectAnswer2, $incorrectAnswer3, $complexity, $topic);
 
         if($isCorrect){
 
