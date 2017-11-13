@@ -11,6 +11,7 @@
           type='text/css'
           media='only screen and (max-width: 480px)'
           href='estilos/smartphone.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <?php
@@ -34,7 +35,9 @@ if (isset($_POST['email'])) {
 
     if ($cont == 1) {
         //header("Location: ./layout.php?logged_user=" . $email);
-
+        $usuarios = file_get_contents('usuarios.txt');
+        $usuarios = $usuarios + 1;
+        file_put_contents('usuarios.txt', $usuarios);
         echo '<script> location.replace("./layout.php?logged_user='.$email.'"); </script>';
     } else {
         $show_error = True;

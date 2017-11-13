@@ -12,12 +12,13 @@
           type='text/css'
           media='only screen and (max-width: 480px)'
           href='estilos/smartphone.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <div id='page-wrap'>
     <header class='main' id='h1'>
-        <span class="right" ><a href="./layout.php">Logout</a></span>
+        <span class="right" ><a href="./layout.php" onclick="decrementarUsuarios()">Logout</a></span>
         <div align="right">
             <?php
             $email;
@@ -120,6 +121,10 @@
     }
 
     $("#input_file").on("change", handleFileSelect);
+
+    function decrementarUsuarios() {
+        $.ajax("DecrementarUsuarios.php");
+    }
 </script>
 </body>
 </html>

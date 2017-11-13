@@ -1,5 +1,7 @@
 <body bgcolor="#bebebe">
 <?php
+header("Cache-Control: no-store, no-cache, must-revalidate");
+
 require_once('config.php');
 $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
 

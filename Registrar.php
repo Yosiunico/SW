@@ -11,6 +11,7 @@
           type='text/css'
           media='only screen and (max-width: 480px)'
           href='estilos/smartphone.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <?php

@@ -1,4 +1,5 @@
 <?php
+header("Cache-Control: no-store, no-cache, must-revalidate");
 //Mandar tabla de preguntas
 $xml = simplexml_load_file('preguntas.xml');
 

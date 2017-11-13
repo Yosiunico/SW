@@ -12,13 +12,14 @@
           type='text/css'
           media='only screen and (max-width: 480px)'
           href='estilos/smartphone.css'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <div id='page-wrap'>
     <header class='main' id='h1'>
-        <span class="right"><a href="./layout.php">Logout</a></span>
+        <span class="right"><a href="./layout.php" onclick="decrementarUsuarios()">Logout</a></span>
         <div align="right">
             <?php
             $email;
@@ -113,6 +114,13 @@
     </footer>
 </div>
 <script>
+    $(function () {
+        setInterval(actualizarNumeroDeUsuarios, 3000);
+        setInterval(actualizarNumeroDePreguntas, 3000);
+
+        $("#input_file").on("change", handleFileSelect);
+    });
+
     function handleFileSelect(event) {
         // Get the file selected by the user
         var file = event.target.files[0];
@@ -139,6 +147,7 @@
     }
 
     function mostrarTablaDePreguntas() {
+        console.log("llega");
         document.getElementById("mensajes").style.display = "none";
         document.getElementById("tabla_de_preguntas").style.display = "block";
 
@@ -177,7 +186,38 @@
         xhttp.send("question=" + question.value + "&correctAnswer=" + correctAnswer.value + "&incorrectAnswer1=" + incorrectAnswer1.value + "&incorrectAnswer2=" + incorrectAnswer2.value + "&incorrectAnswer3=" + incorrectAnswer3.value + "&topic=" + topic.value + "&complexity=" + complexity.value);
     }
 
-    $("#input_file").on("change", handleFileSelect);
+    function actualizarNumeroDeUsuarios() {
+        var response = '';
+        $.ajax({
+            url: 'LeerUsuarios.php',
+            success: function (text) {
+                response = text;
+            }
+        });
+        $("#numero_de_usuarios").html(response);
+    }
+
+    function actualizarNumeroDePreguntas() {
+        $.get('preguntas.xml', function(xml) {
+           numeroDePreguntas = 0;
+           numeroDePreguntasDelUsuario = 0;
+           var $xml = $(xml);
+           var $items = $xml.find("assessmentItem");
+            $.each($items, function() {
+                numeroDePreguntas++;
+                <?php echo "if ($(this).attr('author') === '" . $_GET["logged_user"] . "') {" ?>
+                    numeroDePreguntasDelUsuario++;
+                }
+            console.log($(this).attr('author') + "; " + numeroDePreguntas + "; " + numeroDePreguntasDelUsuario);
+            });
+        });
+
+        $("#total_preguntas_tuyas").html(numeroDePreguntas + "/" + numeroDePreguntasDelUsuario);
+    }
+
+    function decrementarUsuarios() {
+        $.ajax("DecrementarUsuarios.php");
+    }
 </script>
 </body>
 </html>

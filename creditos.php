@@ -12,13 +12,14 @@
 		  type='text/css'
 		  media='only screen and (max-width: 480px)'
 		  href='estilos/smartphone.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 <div id='page-wrap'>
 	<header class='main' id='h1'>
         <?php
         if (isset($_GET['logged_user'])) {
-            echo '<span class="right"><a href="./layout.php">Logout</a></span>';
+            echo '<span class="right"><a href="./layout.php" onclick="decrementarUsuarios()">Logout</a></span>';
         } else {
             echo '<span class="right"><a href="./Registrar.php">Registrarse</a></span>';
             echo '<span> </span>';
@@ -71,5 +72,11 @@
 		<a href='https://github.com'>Link GITHUB</a>
 	</footer>
 </div>
+
+<script>
+    function decrementarUsuarios() {
+        $.ajax("DecrementarUsuarios.php");
+    }
+</script>
 </body>
 </html>
