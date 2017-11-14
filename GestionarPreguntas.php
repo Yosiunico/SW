@@ -182,37 +182,38 @@
             }
         }
         <?php echo 'xhttp.open("POST", "InsertarPreguntaAJAX.php?logged_user=' . $_GET["logged_user"] . '");' ?>
-        xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("question=" + question.value + "&correctAnswer=" + correctAnswer.value + "&incorrectAnswer1=" + incorrectAnswer1.value + "&incorrectAnswer2=" + incorrectAnswer2.value + "&incorrectAnswer3=" + incorrectAnswer3.value + "&topic=" + topic.value + "&complexity=" + complexity.value);
     }
 
     function actualizarNumeroDeUsuarios() {
-        var response = '';
-        $.ajax({
-            url: 'LeerUsuarios.php',
-            success: function (text) {
-                response = text;
-            }
-        });
-        $("#numero_de_usuarios").html(response);
+       // $.ajax('LeerUsuarios.php', function (text) {
+          //  $("#numero_de_usuarios").html(text);
+           // });
+        //$("#numero_de_usuarios").html(response);
+        $.ajax({url: "LeerUsuarios.php", cache: false, success: function(result){
+            $("#numero_de_usuarios").html(result);
+        }});
     }
 
     function actualizarNumeroDePreguntas() {
-        $.get('preguntas.xml', function(xml) {
-           numeroDePreguntas = 0;
-           numeroDePreguntasDelUsuario = 0;
-           var $xml = $(xml);
-           var $items = $xml.find("assessmentItem");
-            $.each($items, function() {
+        $.get('preguntas.xml', function (xml) {
+            numeroDePreguntas = 0;
+            numeroDePreguntasDelUsuario = 0;
+            var $xml = $(xml);
+            var $items = $xml.find("assessmentItem");
+            $.each($items, function () {
                 numeroDePreguntas++;
                 <?php echo "if ($(this).attr('author') === '" . $_GET["logged_user"] . "') {" ?>
-                    numeroDePreguntasDelUsuario++;
-                }
+                numeroDePreguntasDelUsuario++;
+            }
             console.log($(this).attr('author') + "; " + numeroDePreguntas + "; " + numeroDePreguntasDelUsuario);
-            });
         });
+    }
 
-        $("#total_preguntas_tuyas").html(numeroDePreguntas + "/" + numeroDePreguntasDelUsuario);
+    );
+
+    $("#total_preguntas_tuyas").html(numeroDePreguntas + "/" + numeroDePreguntasDelUsuario);
     }
 
     function decrementarUsuarios() {
