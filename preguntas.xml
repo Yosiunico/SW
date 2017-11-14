@@ -16,47 +16,4 @@
             <value>DIV</value>
         </incorrectResponses>
     </assessmentItem>
-    <assessmentItem complexity="4" subject="Internet" author="rarruabarrena001@ikasle.ehu.eus">
-        <itemBody>
-            <p>Este protocolo acabar&#xE1; funcionando
-                incluso entre dos latas unidas por un cord&#xF3;n
-            </p>
-        </itemBody>
-        <correctResponse>
-            <value>
-                TCP/IP
-            </value>
-        </correctResponse>
-        <incorrectResponses>
-            <value>HTTP</value>
-            <value>SMTP</value>
-            <value>Ninguna es correcta</value>
-        </incorrectResponses>
-    </assessmentItem>
-    <assessmentItem complexity="3" subject="este es el tema" author="crivas004@ikasle.ehu.eus">
-        <itemBody>
-            <p>enunciado demasiado cortp</p>
-        </itemBody>
-        <correctResponse>
-            <value>repusta correcta</value>
-        </correctResponse>
-        <incorrectResponses>
-            <value>indo 1</value>
-            <value>inco 2</value>
-            <value>inco 3</value>
-        </incorrectResponses>
-    </assessmentItem>
-    <assessmentItem complexity="3" subject="este es el tema" author="crivas004@ikasle.ehu.eus">
-        <itemBody>
-            <p>enunciado demasiado cortp</p>
-        </itemBody>
-        <correctResponse>
-            <value>repusta correcta</value>
-        </correctResponse>
-        <incorrectResponses>
-            <value>indo 1</value>
-            <value>inco 2</value>
-            <value>inco 3</value>
-        </incorrectResponses>
-    </assessmentItem>
-<assessmentItem complexity="3" subject="dfrtdr" author="joseba001@ikasle.ehu.eus"><itemBody><p>Jsrghuygbjhjijhii</p></itemBody><correctResponse><value>drdedredreder</value></correctResponse><incorrectResponses><value>derdredred</value><value>redredred</value><value>derdred</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="2" subject="suighjrdi" author="joseba001@ikasle.ehu.eus"><itemBody><p>juilhjuihyuyuguyg</p></itemBody><correctResponse><value>yuguyguyguyg</value></correctResponse><incorrectResponses><value>uykgguyhvbgfytfv</value><value>tyvbuygtf</value><value>hiuerhugtidr</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="uiuiu" author="crivas004@ikasle.ehu.eus"><itemBody><p>iuiuiuiuiuiuiuiuiuiuiu</p></itemBody><correctResponse><value>uiuiuiu</value></correctResponse><incorrectResponses><value>iuiuiui</value><value>uiuiuiui</value><value>uiuiuiu</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="yuyuyuyu" author="crivas004@ikasle.ehu.eus"><itemBody><p>aaaaaaaajhghghghghgh</p></itemBody><correctResponse><value>iuiuiuiuiui</value></correctResponse><incorrectResponses><value>uiuiuiu</value><value>iuiuiuiui</value><value>uiuiuiui</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="yuyuyuyu" author="crivas004@ikasle.ehu.eus"><itemBody><p>dsfdsfdsfdsfdsfsdfds</p></itemBody><correctResponse><value>iuiuiuiuiui</value></correctResponse><incorrectResponses><value>uiuiuiu</value><value>iuiuiuiui</value><value>uiuiuiui</value></incorrectResponses></assessmentItem><assessmentItem complexity="5" subject="HGHGHG" author="crivas004@ikasle.ehu.eus"><itemBody><p>IUIUIUIUUGHGFHGHGHGH</p></itemBody><correctResponse><value>HGHGHG</value></correctResponse><incorrectResponses><value>HGHG</value><value>HGHGH</value><value>GHGHG</value></incorrectResponses></assessmentItem><assessmentItem complexity="3" subject="YTYT" author="crivas004@ikasle.ehu.eus"><itemBody><p>TYTYTYTYTYTYT</p></itemBody><correctResponse><value>YTYTYTYT</value></correctResponse><incorrectResponses><value>YTYTYTY</value><value>TYTYTY</value><value>YTYTY</value></incorrectResponses></assessmentItem><assessmentItem complexity="1" subject="uyuyuy" author="crivas004@ikasle.ehu.eus"><itemBody><p>uiuiuiuiuiuiuiuiuiuiui</p></itemBody><correctResponse><value>uiuiuiuiui</value></correctResponse><incorrectResponses><value>uiuiui</value><value>uiuiui</value><value>uiui</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="jhj" author="crivas004@ikasle.ehu.eus"><itemBody><p>ytytytytytytytytyt</p></itemBody><correctResponse><value>ytytyt</value></correctResponse><incorrectResponses><value>ytytyty</value><value>tytyt</value><value>ytyt</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="hghg" author="crivas004@ikasle.ehu.eus"><itemBody><p>jhjhjjjjhjhjhjhjhj</p></itemBody><correctResponse><value>hjhjh</value></correctResponse><incorrectResponses><value>jhjhj</value><value>hjhjhj</value><value>hjhj</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="kjkjk" author="crivas004@ikasle.ehu.eus"><itemBody><p>jkjkjkjkjkjkjkjkjkjkjjkj</p></itemBody><correctResponse><value>jkjkjjk</value></correctResponse><incorrectResponses><value>jkjkjkjk</value><value>jkjkjjkj</value><value>kjkjkjk</value></incorrectResponses></assessmentItem></assessmentItems>
+<assessmentItem complexity="2" subject="34343" author="crivas004@ikasle.ehu.eus"><itemBody><p>23232323232323232</p></itemBody><correctResponse><value>323232</value></correctResponse><incorrectResponses><value>32323</value><value>2323</value><value>23232</value></incorrectResponses></assessmentItem><assessmentItem complexity="1" subject="2121212" author="crivas004@ikasle.ehu.eus"><itemBody><p>12121212121212121</p></itemBody><correctResponse><value>2121</value></correctResponse><incorrectResponses><value>21212</value><value>121</value><value>21212</value></incorrectResponses></assessmentItem><assessmentItem complexity="1" subject="2121212" author="crivas004@ikasle.ehu.eus"><itemBody><p>sasasasasasasa</p></itemBody><correctResponse><value>2121</value></correctResponse><incorrectResponses><value>323</value><value>121</value><value>2323</value></incorrectResponses></assessmentItem></assessmentItems>

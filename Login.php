@@ -1,3 +1,5 @@
+<php header("Cache-Control: no-store, no-cache, must-revalidate"); ?>
+
 <html>
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">

@@ -1,3 +1,5 @@
+<php header("Cache-Control: no-store, no-cache, must-revalidate"); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -197,24 +199,25 @@
     }
 
     function actualizarNumeroDePreguntas() {
-        $.get('preguntas.xml', function (xml) {
-            numeroDePreguntas = 0;
-            numeroDePreguntasDelUsuario = 0;
+        numeroDePreguntas = 0;
+        numeroDePreguntasDelUsuario = 0;
+
+        $.get({
+            url: 'preguntas.xml',
+            cache: false
+        }, function (xml) {
             var $xml = $(xml);
             var $items = $xml.find("assessmentItem");
             $.each($items, function () {
+                console.log("numeroDePreguntas esta ha: " + numeroDePreguntas);
                 numeroDePreguntas++;
-                <?php echo "if ($(this).attr('author') === '" . $_GET["logged_user"] . "') {" ?>
-                numeroDePreguntasDelUsuario++;
-            }
-            console.log($(this).attr('author') + "; " + numeroDePreguntas + "; " + numeroDePreguntasDelUsuario);
+                <?php echo "if ($(this).attr('author') === '" . $_GET["logged_user"] . "') { numeroDePreguntasDelUsuario++; }" ?>
+            });
+
+            console.log("numeroDePreguntas: " + numeroDePreguntas + "; numeroDePreguntasDelUsuario: " + numeroDePreguntasDelUsuario);
+            $("#total_preguntas_tuyas").html(numeroDePreguntas + "/" + numeroDePreguntasDelUsuario);
         });
-    }
-
-    );
-
-    $("#total_preguntas_tuyas").html(numeroDePreguntas + "/" + numeroDePreguntasDelUsuario);
-    }
+    };
 
     function decrementarUsuarios() {
         $.ajax("DecrementarUsuarios.php");

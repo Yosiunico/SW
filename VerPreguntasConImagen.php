@@ -1,3 +1,5 @@
+<php header("Cache-Control: no-store, no-cache, must-revalidate"); ?>
+
 <body bgcolor="#bebebe">
     <?php
         require_once('config.php');
