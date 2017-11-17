@@ -18,6 +18,7 @@
 </head>
 <body>
 <?php
+
 if (isset($_POST['email'])) {
     function alert($msj){
         echo "<script type='text/javascript'>alert('$msj'); </script>";
