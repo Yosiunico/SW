@@ -25,7 +25,6 @@ if (isset($_POST['email'])) {
     }
 
     function verify($email,$name_lastnames,$nick,$password, $repeat_password) {
-        $isCorrect = true;
         if(preg_match("/^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$/",$email) == 0){
             alert( "Error en el email");
             return false;
@@ -48,7 +47,7 @@ if (isset($_POST['email'])) {
             return false;
         }
 
-        return $isCorrect;
+        return true;
     }
 
     require_once ('config.php');
@@ -139,6 +138,13 @@ if (isset($_POST['email'])) {
         <a href='https://github.com'>Link GITHUB</a>
     </footer>
 </div>
+<script>
+    var $email = $('#input_email');
+
+    $email.change(function () {
+        alert("validadion");
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
