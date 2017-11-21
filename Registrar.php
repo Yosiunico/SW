@@ -97,7 +97,10 @@ if (isset($_POST['email'])) {
         if (isset($_GET['logged_user'])) {
             echo "<span><a href='layout.php?logged_user=" . $_GET['logged_user'] . "'>Inicio</a></span>";
             echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_GET['logged_user'] . "'>Preguntas</a></span>";
+            echo "<span><a href='./GestionarPreguntas.php?logged_user=" . $_GET['logged_user'] . "'>Gestionar preguntas</a></span>";
             echo "<span><a href='./creditos.php?logged_user=" . $_GET['logged_user'] . "'>Creditos</a></span>";
+            echo "<span><a href='./ClienteDeSW.php?logged_user=" . $_GET['logged_user'] . "'>Cliente consumidor del SW</a></span>";
+
         } else {
             echo "<span><a href='layout.php'>Inicio</a></span>";
             echo "<span><a href='./creditos.php'>Creditos</a></span>";
