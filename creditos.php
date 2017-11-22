@@ -82,10 +82,10 @@
 
     $.ajax({url: "ComprobarPais.php", cache: false, success: function(result){
         console.log("---> " + result);
-        if (!result === '') {
+        if (result != '') {
             $('#pais').text('🌎 Connected from ' + result);
         } else {
-            $('#pais').text('🌎 Cannot look up your location');
+            $('#pais').text('🌎 Connected from ???');
         }
 
     }});

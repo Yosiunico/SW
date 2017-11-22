@@ -7,9 +7,13 @@ header("Cache-Control: no-store, no-cache, must-revalidate");
 require_once('lib/nusoap.php');
 require_once('lib/class.wsdlcache.php');
 
-$ip = $_SERVER['REMOTE_ADDR'];
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-//$ip = '74.125.91.106';
+$ip = '74.125.91.106';
+
+//FALTA QUE PHP DETECTE LA IP DEL CLIENTE
 
 //creamos el objeto de tipo soapclient.
 //http://www.mydomain.com/server.php se refiere a la url
@@ -18,8 +22,6 @@ $soapclient = new nusoap_client( 'http://www.webservicex.net/geoipservice.asmx?W
 
 $result = $soapclient->call('GetGeoIP', array('IPAddress'=>$ip));
 
-//echo $result['GetGeoIPResult']['CountryName'];
-
-echo "*" . $_SERVER['REMOTE_ADDR'] . "*";
+echo $result['GetGeoIPResult']['CountryName'];
 
 ?>
