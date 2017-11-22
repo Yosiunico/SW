@@ -18,6 +18,8 @@ $soapclient = new nusoap_client( 'http://www.webservicex.net/geoipservice.asmx?W
 
 $result = $soapclient->call('GetGeoIP', array('IPAddress'=>$ip));
 
-echo $result['GetGeoIPResult']['CountryName'];
+//echo $result['GetGeoIPResult']['CountryName'];
+
+echo "*" . $_SERVER['REMOTE_ADDR'] . "*";
 
 ?>
