@@ -11,7 +11,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$ip = '74.125.91.106';
+//$ip = '74.125.91.106';
+$ip = $_SERVER["REMOTE_ADDR"];
 
 //FALTA QUE PHP DETECTE LA IP DEL CLIENTE
 
