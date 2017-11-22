@@ -128,7 +128,7 @@ if (isset($_POST['email'])) {
                         <label for="input_image">Elegir foto de perfil:</label>
                         <input id="input_image" name="image" type="file"><br>
 
-                        <input id="input_submit" type="submit" value="Enviar" disabled>
+                        <input id="input_submit" class="btn btn-primary" type="submit" value="Enviar" disabled>
                     </div>
                 </form>
             </fieldset>
