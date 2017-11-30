@@ -26,7 +26,7 @@ session_start();
 <?php
 $show_error = False;
 $email;
-if (isset($_SESSION['email'])) {
+if (isset($_POST['email'])) {
 
     function alert($msj){
         echo "<script display='none' type='text/javascript'>alert('$msj'); </script>";
