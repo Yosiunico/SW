@@ -63,7 +63,11 @@ session_start();
             if (isset($_SESSION['email'])) {
                 echo "<span><a href='layout.php'>Inicio</a></span>";
                 echo "<span><a href='./preguntasHTML5.php'>Preguntas</a></span>";
-                echo "<span><a href='./GestionarPreguntas.php'>Gestionar preguntas</a></span>";
+                if ($_SESSION['email'] != 'web000@ehu.es') {
+                    echo "<span><a href='GestionarPreguntas.php'>Gestionar preguntas</a></span>";
+                } else {
+                    echo "<span><a href='RevisarPreguntas.php'>Revisar preguntas</a></span>";
+                }
                 echo "<span><a href='./creditos.php'>Creditos</a></span>";
                 echo "<span><a href='./ClienteDeSW.php'>Cliente consumidor del SW</a></span>";
 
