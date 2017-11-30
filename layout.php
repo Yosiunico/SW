@@ -1,4 +1,11 @@
-<php header("Cache-Control: no-store, no-cache, must-revalidate"); ?>
+<?php
+header("Cache-Control: no-store, no-cache, must-revalidate");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +28,7 @@
 <div id='page-wrap'>
 	<header class='main' id='h1'>
         <?php
-        if (isset($_GET['logged_user'])) {
+        if (isset($_SESSION['email'])) {
             echo '<span class="right"><a href="./layout.php" onclick="decrementarUsuarios()">Logout</a></span>';
         } else {
             echo '<span class="right"><a href="./Registrar.php">Registrarse</a></span>';
@@ -32,10 +39,10 @@
         <div style="float: right;">
             <?php
             $email;
-                if(isset($_GET['logged_user'])){
+                if(isset($_SESSION['email'])){
                     require_once('config.php');
                     $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
-                    $email = $_GET['logged_user'];
+                    $email = $_SESSION['email'];
                     $user= mysqli_query($link, "SELECT * FROM usuarios WHERE email =\"".$email."\"");
                     $row = mysqli_fetch_array($user);
                     if (strlen ($row['image'])> 0 ){
@@ -50,17 +57,15 @@
 
         <h2>Quiz: el juego de las preguntas</h2>
 
-
-
 	</header>
 	<nav class='main' id='n1' role='navigation'>
         <?php
-            if (isset($_GET['logged_user'])) {
-                echo "<span><a href='layout.php?logged_user=" . $_GET['logged_user'] . "'>Inicio</a></span>";
-                echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_GET['logged_user'] . "'>Preguntas</a></span>";
-                echo "<span><a href='./GestionarPreguntas.php?logged_user=" . $_GET['logged_user'] . "'>Gestionar preguntas</a></span>";
-                echo "<span><a href='./creditos.php?logged_user=" . $_GET['logged_user'] . "'>Creditos</a></span>";
-                echo "<span><a href='./ClienteDeSW.php?logged_user=" . $_GET['logged_user'] . "'>Cliente consumidor del SW</a></span>";
+            if (isset($_SESSION['email'])) {
+                echo "<span><a href='layout.php'>Inicio</a></span>";
+                echo "<span><a href='./preguntasHTML5.php'>Preguntas</a></span>";
+                echo "<span><a href='./GestionarPreguntas.php'>Gestionar preguntas</a></span>";
+                echo "<span><a href='./creditos.php'>Creditos</a></span>";
+                echo "<span><a href='./ClienteDeSW.php'>Cliente consumidor del SW</a></span>";
 
             } else {
                 echo "<span><a href='layout.php'>Inicio</a></span>";

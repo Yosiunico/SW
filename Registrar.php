@@ -1,4 +1,11 @@
-<php header("Cache-Control: no-store, no-cache, must-revalidate"); ?>
+<?php
+header("Cache-Control: no-store, no-cache, must-revalidate");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+?>
 
 <html>
 <head>
@@ -18,7 +25,7 @@
 <body>
 <?php
 
-if (isset($_POST['email'])) {
+if (isset($_SESSION['email'])) {
     function alert($msj){
         echo "<script type='text/javascript'>alert('$msj'); </script>";
     }
@@ -64,10 +71,10 @@ if (isset($_POST['email'])) {
     if(verify($email, $name_lastnames, $nick, $password, $repeat_password)){
         if($_FILES['image']['size'] > 0) {
             $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image) VALUES ('$email','$name_lastnames','$nick','$password','$image')";
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image, rol) VALUES ('$email','$name_lastnames','$nick','$password','$image', 'alumno')";
 
         }else{
-            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password) VALUES ('$email','$name_lastnames','$nick','$password')";
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, rol) VALUES ('$email','$name_lastnames','$nick','$password', 'alumno')";
 
         }
 
@@ -93,7 +100,7 @@ if (isset($_POST['email'])) {
     </header>
     <nav class='main' id='n1' role='navigation'>
         <?php
-        if (isset($_GET['logged_user'])) {
+        if (isset($_SESSION['email'])) {
             echo "<span><a href='layout.php?logged_user=" . $_GET['logged_user'] . "'>Inicio</a></span>";
             echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_GET['logged_user'] . "'>Preguntas</a></span>";
             echo "<span><a href='./GestionarPreguntas.php?logged_user=" . $_GET['logged_user'] . "'>Gestionar preguntas</a></span>";

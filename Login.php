@@ -1,4 +1,11 @@
-<php header("Cache-Control: no-store, no-cache, must-revalidate"); ?>
+<?php
+header("Cache-Control: no-store, no-cache, must-revalidate");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+?>
 
 <html>
 <head>
@@ -19,7 +26,7 @@
 <?php
 $show_error = False;
 $email;
-if (isset($_POST['email'])) {
+if (isset($_SESSION['email'])) {
 
     function alert($msj){
         echo "<script display='none' type='text/javascript'>alert('$msj'); </script>";
@@ -37,10 +44,19 @@ if (isset($_POST['email'])) {
 
     if ($cont == 1) {
         //header("Location: ./layout.php?logged_user=" . $email);
+        $usuario = mysqli_fetch_array($usuarios);
+        $rol = $usuario['rol'];
+        $_SESSION['rol'] = $rol;
+        $_SESSION['email'] = $email;
         $usuarios = file_get_contents('usuarios.txt');
         $usuarios = $usuarios + 1;
         file_put_contents('usuarios.txt', $usuarios);
-        echo '<script> location.replace("./layout.php?logged_user='.$email.'"); </script>';
+
+        if ($rol === 'alumno') {
+            echo '<script>location.replace("./GestionarPreguntas.php");</script>';
+        } else {
+            echo '<script>location.replace("./RevisarPreguntas.php");</script>';
+        }
     } else {
         $show_error = True;
     }
@@ -53,12 +69,12 @@ if (isset($_POST['email'])) {
     </header>
     <nav class='main' id='n1' role='navigation'>
         <?php
-        if (isset($_GET['logged_user'])) {
-            echo "<span><a href='layout.php?logged_user=" . $_GET['logged_user'] . "'>Inicio</a></span>";
-            echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_GET['logged_user'] . "'>Preguntas</a></span>";
-            echo "<span><a href='./GestionarPreguntas.php?logged_user=" . $_GET['logged_user'] . "'>Gestionar preguntas</a></span>";
-            echo "<span><a href='./creditos.php?logged_user=" . $_GET['logged_user'] . "'>Creditos</a></span>";
-            echo "<span><a href='./ClienteDeSW.php?logged_user=" . $_GET['logged_user'] . "'>Cliente consumidor del SW</a></span>";
+        if (isset($_SESSION['email'])) {
+            echo "<span><a href='layout.php?logged_user=" . $_SESSION['email'] . "'>Inicio</a></span>";
+            echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_SESSION['email'] . "'>Preguntas</a></span>";
+            echo "<span><a href='./GestionarPreguntas.php?logged_user=" . $_SESSION['email'] . "'>Gestionar preguntas</a></span>";
+            echo "<span><a href='./creditos.php?logged_user=" . $_SESSION['email'] . "'>Creditos</a></span>";
+            echo "<span><a href='./ClienteDeSW.php?logged_user=" . $_SESSION['email'] . "'>Cliente consumidor del SW</a></span>";
 
         } else {
             echo "<span><a href='layout.php'>Inicio</a></span>";
@@ -73,13 +89,15 @@ if (isset($_POST['email'])) {
 
                 <legend align="center">Login</legend>
                 <form action="./Login.php" method="post">
-                    <div style="padding: 20px">
+                    <div style="padding: 20px; max-width: 240px; margin: 0 auto;">
                         <label for="input_email">Email:*</label>
-                        <input id="input_email" name="email" title="Ej: crivas004@ikasle.ehu.es" type="text" pattern="^[a-zA-Z]{3,}[0-9]{3}@ikasle.ehu.eu?s$" required><br>
+                        <input id="input_email" class="form-control" style="width: 200px" name="email" title="Ej: crivas004@ikasle.ehu.es" type="text" required><br>
                         <label for="input_password">Contraseña:*</label>
-                        <input id="input_password" name="password" type="password" pattern=".{6,}" required><br>
+                        <input id="input_password" class="form-control" style="width: 200px" name="password" type="password" pattern=".{6,}" required><br>
 
-                        <input type="submit" class="btn btn-primary" value="Enviar">
+                        <div style="max-width: 70px; margin: 0 auto;">
+                            <input type="submit" class="btn btn-primary" value="Enviar">
+                        </div>
                     </div>
                 </form>
             </fieldset>
