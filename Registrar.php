@@ -25,7 +25,7 @@ session_start();
 <body>
 <?php
 
-if (isset($_SESSION['email'])) {
+if (isset($_POST['email'])) {
     function alert($msj){
         echo "<script type='text/javascript'>alert('$msj'); </script>";
     }
@@ -67,14 +67,15 @@ if (isset($_SESSION['email'])) {
     $name_lastnames = $_POST['name_lastnames'];
     $nick = $_POST['nick'];
     $password = $_POST['password'];
+    $hashed_password = crypt($password);
     $repeat_password = $_POST['repeat_password'];
     if(verify($email, $name_lastnames, $nick, $password, $repeat_password)){
         if($_FILES['image']['size'] > 0) {
             $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image, rol) VALUES ('$email','$name_lastnames','$nick','$password','$image', 'alumno')";
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image, rol) VALUES ('$email','$name_lastnames','$nick','$hashed_password','$image', 'alumno')";
 
         }else{
-            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, rol) VALUES ('$email','$name_lastnames','$nick','$password', 'alumno')";
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, rol) VALUES ('$email','$name_lastnames','$nick','$hashed_password', 'alumno')";
 
         }
 

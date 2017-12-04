@@ -37,7 +37,7 @@ if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $usuarios = mysqli_query($link, "select * from usuarios where email='$email' and password='$password'");
+    $usuarios = mysqli_query($link, "select * from usuarios where email='$email'");
     $cont = mysqli_num_rows($usuarios);
 
     mysqli_close($link);
@@ -45,17 +45,20 @@ if (isset($_POST['email'])) {
     if ($cont == 1) {
         //header("Location: ./layout.php?logged_user=" . $email);
         $usuario = mysqli_fetch_array($usuarios);
-        $rol = $usuario['rol'];
-        $_SESSION['rol'] = $rol;
-        $_SESSION['email'] = $email;
-        $usuarios = file_get_contents('usuarios.txt');
-        $usuarios = $usuarios + 1;
-        file_put_contents('usuarios.txt', $usuarios);
 
-        if ($rol === 'alumno') {
-            echo '<script>location.replace("./GestionarPreguntas.php");</script>';
-        } else {
-            echo '<script>location.replace("./RevisarPreguntas.php");</script>';
+        if (hash_equals($usuario['password'], crypt($password, $usuario['password']))) {
+            $rol = $usuario['rol'];
+            $_SESSION['rol'] = $rol;
+            $_SESSION['email'] = $email;
+            $usuarios = file_get_contents('usuarios.txt');
+            $usuarios = $usuarios + 1;
+            file_put_contents('usuarios.txt', $usuarios);
+
+            if ($rol === 'alumno') {
+                echo '<script>location.replace("./GestionarPreguntas.php");</script>';
+            } else {
+                echo '<script>location.replace("./RevisarPreguntas.php");</script>';
+            }
         }
     } else {
         $show_error = True;
