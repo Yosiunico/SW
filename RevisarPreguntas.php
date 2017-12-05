@@ -69,7 +69,7 @@ if (!isset($_SESSION['email'])) {
     <section class="main" id="s1">
         <div>
             <h3>Selecciona la pregunta que quieras revisar:</h3><br>
-
+            <div id="selectDropdown">
             <select id="select_pregunta" class="custom-select">
                 <option selected>Selecciona una pregunta</option>
             <?php
@@ -85,14 +85,17 @@ if (!isset($_SESSION['email'])) {
             $preguntas->close();
             mysqli_close($link);
             ?>
-            </select><br><br>
-
+            </select>
+        </div>
+            <br><br>
 
             <div id="div_preguntas"></div>
 
-            <di id="div_feedback"></di>
+            <div id="div_feedback"></div>
 
             <button id="btn_submit" class="btn btn-primary">Submit</button>
+            <button onclick="borrarPregunta()" type="button" class="btn btn-danger">Eliminar</button>
+
         </div>
     </section>
     <footer class='main' id='f1'>
@@ -112,6 +115,15 @@ if (!isset($_SESSION['email'])) {
             }
         });
     });
+
+    function updateSelect () {
+        var value = $("#select_pregunta").val();
+        $.ajax({
+            url: "ObtenerCamposDePregunta.php?id=" + value, cache: false, success: function(result){
+                $("#div_preguntas").html(result);
+            }
+        });
+    }
 
     $submit.click(function () {
         question = $("#question").val();
@@ -134,6 +146,7 @@ if (!isset($_SESSION['email'])) {
                 }
             });
         }
+        updateDropdownList();
     });
 
     function decrementarUsuarios() {
@@ -146,5 +159,34 @@ if (!isset($_SESSION['email'])) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
         integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+<script>
+    function borrarPregunta() {
+        if(confirm('Seguro?')){
+            alert('confirmar');
+            id =  $("#select_pregunta").val();
+            $.ajax({
+                url: "eliminarPregunta.php?id=" + $select.val(), cache: false, success: function(result){
+                    alert('Eliminada correctamente');
+                }
+            });
+            updateDropdownList();
+        }else{
+            alert('cancelar');
+        }
+
+
+    }
+    function updateDropdownList() {
+        alert('actualizando...');
+        $.ajax({
+            url: 'imprimirDropdownList.php', cache: false, success: function(result){
+                $('#selectDropdown').html(result);
+            }
+        });
+        $('#div_preguntas').html('');
+
+    }
+
+</script>
 </body>
 </html>
