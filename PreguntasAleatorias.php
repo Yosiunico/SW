@@ -79,18 +79,39 @@ session_start();
     </nav>
     <section class="main" id="s1">
         <div class="container" align="center">
-            <h1>¿Cuanto sabes? Pruebame.</h1>
+            <h1>Titulo</h1>
             <br/>
-            <p>Selecciona uno de los modos de juego para empezar a jugar</p>
+            <p>EnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciado</p>
             <br/>
-            <div class="row justify-content-center">
-                <div class="col-2">
-                    <input class="btn btn-primary" type="button" value="Preguntas aleatorias">
+            <form>
+                <div class="row justify-content-center">
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-radio ">
+                        <input id="radio1" name="radio-stacked" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">HTML</span>
+                    </label>
+                    <label class="custom-control custom-radio ">
+                        <input id="radio2" name="radio-stacked" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">PHP</span>
+                    </label>
+                    <label class="custom-control custom-radio">
+                        <input id="radio3" name="radio-stacked" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">AJAX</span>
+                    </label>
+                    <label class="custom-control custom-radio">
+                        <input id="radio4" name="radio-stacked" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Ninguna</span>
+                    </label>
                 </div>
-                <div class="col-2">
-                    <input class="btn btn-primary" type="button" value="Sobre un tema">
+                    <div class="w-100"></div>
+                    <input class="btn btn-primary" type="button" value="Comprobar">
                 </div>
-                </div>
+
+            </form>
 
         </div>
     </section>
@@ -99,8 +120,6 @@ session_start();
         <a href='https://github.com'>Link GITHUB</a>
     </footer>
 </div>
-<script>
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
