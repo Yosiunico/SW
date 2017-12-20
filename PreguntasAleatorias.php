@@ -12,16 +12,17 @@ session_start();
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
     <title>Preguntas</title>
-    <link rel='stylesheet' type='text/css' href='estilos/style.css' />
+    <link rel='stylesheet' type='text/css' href='estilos/style.css'/>
     <link rel='stylesheet'
           type='text/css'
           media='only screen and (min-width: 530px) and (min-device-width: 481px)'
-          href='estilos/wide.css' />
+          href='estilos/wide.css'/>
     <link rel='stylesheet'
           type='text/css'
           media='only screen and (max-width: 480px)'
-          href='estilos/smartphone.css' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+          href='estilos/smartphone.css'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -39,17 +40,17 @@ session_start();
         <div style="float: right;">
             <?php
             $email;
-            if(isset($_SESSION['email'])){
+            if (isset($_SESSION['email'])) {
                 require_once('config.php');
                 $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
                 $email = $_SESSION['email'];
-                $user= mysqli_query($link, "SELECT * FROM usuarios WHERE email =\"".$email."\"");
+                $user = mysqli_query($link, "SELECT * FROM usuarios WHERE email =\"" . $email . "\"");
                 $row = mysqli_fetch_array($user);
-                if (strlen ($row['image'])> 0 ){
+                if (strlen($row['image']) > 0) {
                     $image = 'image.png';
-                    echo '<img height="42" width="42" src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"/>';
-                }else{
-                    echo "<p>".$email."</p>";
+                    echo '<img height="42" width="42" src="data:image/jpeg;base64,' . base64_encode($row['image']) . '"/>';
+                } else {
+                    echo "<p>" . $email . "</p>";
                 }
             }
             ?>
@@ -79,38 +80,48 @@ session_start();
     </nav>
     <section class="main" id="s1" style="text-align: start">
         <div class="container" style="padding-left: 100px">
-            <h1>Titulo</h1>
-            <br/>
-            <p class="text-left">EnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciado</p>
-            <br/>
-            <form>
-                <div class="custom-controls-stacked">
-                    <label class="custom-control custom-radio ">
-                        <input id="radio1" name="radio-stacked" type="radio" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">HTML</span>
-                    </label>
-                    <label class="custom-control custom-radio ">
-                        <input id="radio2" name="radio-stacked" type="radio" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">PHP</span>
-                    </label>
-                    <label class="custom-control custom-radio">
-                        <input id="radio3" name="radio-stacked" type="radio" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">AJAX</span>
-                    </label>
-                    <label class="custom-control custom-radio">
-                        <input id="radio4" name="radio-stacked" type="radio" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Ninguna</span>
-                    </label>
+            <div class="row">
+                <div class="col">
+                    <h1>Titulo</h1>
                 </div>
-                    <div class="w-100"></div>
-                    <input class="btn btn-primary" type="button" value="Comprobar">
-
-            </form>
-
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-left" style="max-width: 90%; word-wrap: break-word;">
+                        Esto es una frase con espacios. Esperp que sea de tu agrado. 2 + 2 son cuatro, por cuatro dieciseís. Ocho y ocho dieciseís también, la pared es blanca y el suelo también.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="margin-left: 40px">
+                    <form>
+                        <div class="custom-controls-stacked">
+                            <label class="custom-control custom-radio ">
+                                <input id="radio1" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">HTML</span>
+                            </label>
+                            <label class="custom-control custom-radio ">
+                                <input id="radio2" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">PHP</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input id="radio3" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">AJAX</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input id="radio4" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Ninguna</span>
+                            </label>
+                        </div>
+                        <div style="text-align: center; margin-right: 10%">
+                            <input class="btn btn-primary" type="button" value="Comprobar">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
     <footer class='main' id='f1'>
@@ -118,7 +129,11 @@ session_start();
         <a href='https://github.com'>Link GITHUB</a>
     </footer>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
 </html>
