@@ -77,14 +77,13 @@ session_start();
         }
         ?>
     </nav>
-    <section class="main" id="s1">
-        <div class="container" align="center">
+    <section class="main" id="s1" style="text-align: start">
+        <div class="container" style="padding-left: 100px">
             <h1>Titulo</h1>
             <br/>
-            <p>EnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciado</p>
+            <p class="text-left">EnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciadoEnunciado</p>
             <br/>
             <form>
-                <div class="row justify-content-center">
                 <div class="custom-controls-stacked">
                     <label class="custom-control custom-radio ">
                         <input id="radio1" name="radio-stacked" type="radio" class="custom-control-input">
@@ -109,7 +108,6 @@ session_start();
                 </div>
                     <div class="w-100"></div>
                     <input class="btn btn-primary" type="button" value="Comprobar">
-                </div>
 
             </form>
 
