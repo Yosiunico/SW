@@ -10,7 +10,7 @@ if(isset($_POST['preguntasAleatorias'])){
     $_SESSION['partida'] = [
             'modo' => 'aleatorio'
     ];
-    echo '<script>window.open("./PreguntasAleatorias.php", "_self");</script>';
+    echo '<script>window.open("./EmpezarJuego.php", "_self");</script>';
 }
 if(isset($_POST['preguntasTema'])){
     $_SESSION['partida'] = [

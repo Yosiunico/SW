@@ -79,55 +79,51 @@ session_start();
         ?>
     </nav>
     <section class="main" id="s1" style="text-align: start">
-        <?php
-        if (isset($_SESSION['partida']))
-            echo $_SESSION['partida']['modo'];
+        <div id="pregunta" class="container" style="padding-left: 100px">
+            <div class="row">
+                <div class="col">
+                    <h1 id="titulo">Titulo</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p id="enunciado" class="text-left" style="max-width: 90%; word-wrap: break-word;">
+                        Esto es una frase con espacios. Esperp que sea de tu agrado. 2 + 2 son cuatro, por cuatro dieciseís. Ocho y ocho dieciseís también, la pared es blanca y el suelo también.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="margin-left: 40px">
+                    <form>
+                        <div class="custom-controls-stacked">
+                            <label class="custom-control custom-radio ">
+                                <input id="radio1" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span id="res1" class="custom-control-description">HTML</span>
+                            </label>
+                            <label class="custom-control custom-radio ">
+                                <input id="radio2" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span id="res2" class="custom-control-description">PHP</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input id="radio3" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span id="res3" class="custom-control-description">AJAX</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input id="radio4" name="radio-stacked" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span id="res4" class="custom-control-description">Ninguna</span>
+                            </label>
+                        </div>
+                        <div style="text-align: center; margin-right: 10%">
+                            <input class="btn btn-primary" type="button" value="Comprobar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-        ?>
-<!--        <div class="container" style="padding-left: 100px">-->
-<!--            <div class="row">-->
-<!--                <div class="col">-->
-<!--                    <h1>Titulo</h1>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="row">-->
-<!--                <div class="col">-->
-<!--                    <p class="text-left" style="max-width: 90%; word-wrap: break-word;">-->
-<!--                        Esto es una frase con espacios. Esperp que sea de tu agrado. 2 + 2 son cuatro, por cuatro dieciseís. Ocho y ocho dieciseís también, la pared es blanca y el suelo también.</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="row">-->
-<!--                <div class="col" style="margin-left: 40px">-->
-<!--                    <form>-->
-<!--                        <div class="custom-controls-stacked">-->
-<!--                            <label class="custom-control custom-radio ">-->
-<!--                                <input id="radio1" name="radio-stacked" type="radio" class="custom-control-input">-->
-<!--                                <span class="custom-control-indicator"></span>-->
-<!--                                <span class="custom-control-description">HTML</span>-->
-<!--                            </label>-->
-<!--                            <label class="custom-control custom-radio ">-->
-<!--                                <input id="radio2" name="radio-stacked" type="radio" class="custom-control-input">-->
-<!--                                <span class="custom-control-indicator"></span>-->
-<!--                                <span class="custom-control-description">PHP</span>-->
-<!--                            </label>-->
-<!--                            <label class="custom-control custom-radio">-->
-<!--                                <input id="radio3" name="radio-stacked" type="radio" class="custom-control-input">-->
-<!--                                <span class="custom-control-indicator"></span>-->
-<!--                                <span class="custom-control-description">AJAX</span>-->
-<!--                            </label>-->
-<!--                            <label class="custom-control custom-radio">-->
-<!--                                <input id="radio4" name="radio-stacked" type="radio" class="custom-control-input">-->
-<!--                                <span class="custom-control-indicator"></span>-->
-<!--                                <span class="custom-control-description">Ninguna</span>-->
-<!--                            </label>-->
-<!--                        </div>-->
-<!--                        <div style="text-align: center; margin-right: 10%">-->
-<!--                            <input class="btn btn-primary" type="button" value="Comprobar">-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </section>
     <footer class='main' id='f1'>
         <p><a href="http://es.wikipedia.org/wiki/Quiz" target="_blank">Que es un Quiz?</a></p>
@@ -140,5 +136,84 @@ session_start();
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
         integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+<script>
+<?php
+if (isset($_SESSION['partida'])){
+    //var_dump($_SESSION['partida']);
+    echo 'var partidaJSON =' . $_SESSION['partida'] . ';';
+
+}
+?>
+    $(function () {
+        $('#pregunta').hide();
+        cargarPregunta(1);
+
+
+
+    });
+    function cargarPregunta(pos) {
+        $('#pregunta').hide();
+        $('#enunciado').html(partidaJSON['preguntasRestantes'][pos]['question']);
+        $('#res1').html(partidaJSON['preguntasRestantes'][pos]['incorrect_answer_1']);
+        $('#res2').html(partidaJSON['preguntasRestantes'][pos]['incorrect_answer_2']);
+        $('#res3').html(partidaJSON['preguntasRestantes'][pos]['incorrect_answer_3']);
+        $('#res4').html(partidaJSON['preguntasRestantes'][pos]['correct_answer']);
+        $('#pregunta').show();
+
+
+        //var pregunta = document.getElementById("pregunta");
+       /* DivRow1 = document.createElement('div');
+        DivRow1.setAttribute('class', 'row');
+        DivRow2 = document.createElement('div');
+        DivRow2.setAttribute('class', 'row');
+        DivRow3 = document.createElement('div');
+        DivRow3.setAttribute('class', 'row');
+
+        DivCol1 = document.createElement('div');
+        DivCol1.setAttribute('class', 'col');
+        DivCol2 = document.createElement('div');
+        DivCol2.setAttribute('class', 'col');
+        DivCol3 = document.createElement('div');
+        DivCol3.setAttribute('class', 'col');
+
+        titulo = document.createElement('h1');
+        tituloText = document.createTextNode('Titulo')
+        titulo.appendChild(tituloText);
+        DivCol1.appendChild(titulo);
+
+        enunciado = document.createElement('p');
+        enunciado.setAttribute('class', 'text-left');
+        enunciado.setAttribute('style', 'max-width: 90%; word-wrap: break-word;');
+        enunciadoText = document.createTextNode(partidaJSON['preguntasRestantes'][pos]['question']);
+        enunciado.appendChild(enunciadoText);
+        DivCol2.appendChild(enunciado);
+
+
+
+
+        DivRow1.appendChild(DivCol1);
+        DivRow2.appendChild(DivCol2);
+        DivRow3.appendChild(DivCol3);
+
+
+        pregunta.appendChild(DivRow1);
+        pregunta.appendChild(DivRow2);
+        pregunta.appendChild(DivRow3);*/
+
+
+
+
+
+
+
+    }
+    function borrarPregunta(pos){
+        delete partidaJSON['preguntasRestantes'][pos];
+    }
+    function guardarPregunta(pos){
+        partidaJSON['preguntasResueltas'].push(partidaJSON['preguntasRestantes'][pos]);
+        borrarPregunta(pos);
+    }
+</script>
 </body>
 </html>
