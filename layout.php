@@ -34,6 +34,7 @@ session_start();
             echo '<span class="right"><a href="./Registrar.php">Registrarse</a></span>';
             echo '<span> </span>';
             echo '<span class="right"><a href="./Login.php">Login</a></span>';
+
         }
         ?>
         <div style="float: right;">
@@ -74,6 +75,7 @@ session_start();
             } else {
                 echo "<span><a href='layout.php'>Inicio</a></span>";
                 echo "<span><a href='./creditos.php'>Creditos</a></span>";
+                echo "<span><a href='./JuegoPreguntasInicio.php'>¡¡Jugar!!</a></span>";
             }
         ?>
 	</nav>

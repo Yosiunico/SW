@@ -5,6 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -79,29 +80,41 @@ session_start();
         ?>
     </nav>
     <section class="main" id="s1" style="text-align: start">
-        <div class="container" style="text-align: center;padding-top: 3%">
-            <div class="row">
-                <div class="col">
-                    <h1>Escoge un tema</h1>
+        <form action="EscojeTemaPreguntas.php" method="post">
+            <div class="container" style="text-align: center;padding-top: 3%">
+                <div class="row">
+                    <div class="col">
+                        <h1>Escoje un tema</h1>
+                    </div>
                 </div>
-            </div>
-            <div class="row" style="margin-top: 2%">
-                <div class="col">
+                <div class="row" style="margin-top: 2%">
+                    <div class="col">
 
-                    <select class="custom-select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                        <select class="custom-select">
+                            <option selected>Open this select menu</option>
+                            <?php
+
+                            require_once('config.php');
+                            $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
+                            $preguntas = mysqli_query($link, "SELECT DISTINCT (topic) FROM preguntas");
+
+                            while ($row = mysqli_fetch_array($preguntas)) {
+                                echo '<option value="' . $row['topic'] . '">' . $row['topic'] . '</option>';
+                            }
+
+                            $preguntas->close();
+                            mysqli_close($link);
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 2%">
+                    <div class="col">
+                        <input class="btn btn-primary" type="submit" value="Aceptar">
+                    </div>
                 </div>
             </div>
-            <div class="row" style="margin-top: 2%">
-                <div class="col">
-                    <input class="btn btn-primary" type="button" value="Aceptar">
-                </div>
-            </div>
-        </div>
+        </form>
     </section>
     <footer class='main' id='f1'>
         <p><a href="http://es.wikipedia.org/wiki/Quiz" target="_blank">Que es un Quiz?</a></p>

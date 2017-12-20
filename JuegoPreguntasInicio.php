@@ -5,6 +5,22 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+
+if(isset($_POST['preguntasAleatorias'])){
+    $_SESSION['partida'] = [
+            'modo' => 'aleatorio'
+    ];
+    echo '<script>window.open("./PreguntasAleatorias.php", "_self");</script>';
+}
+if(isset($_POST['preguntasTema'])){
+    $_SESSION['partida'] = [
+        'modo' => 'tema'
+    ];
+    echo '<script>window.open("./EscojeTemaPreguntas.php", "_self");</script>';
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -83,15 +99,16 @@ session_start();
             <br/>
             <p>Selecciona uno de los modos de juego para empezar a jugar</p>
             <br/>
-            <div class="row justify-content-center">
-                <div class="col-2">
-                    <input class="btn btn-primary" type="button" value="Preguntas aleatorias">
+            <form action="JuegoPreguntasInicio.php" method="post">
+                <div class="row justify-content-center">
+                    <div class="col-2">
+                        <input id="preguntasAleatorias" class="btn btn-primary" type="submit" name="preguntasAleatorias" value="Preguntas aleatorias">
+                    </div>
+                    <div class="col-2">
+                        <input id="preguntasTema" class="btn btn-primary" type="submit" name="preguntasTema" value="Sobre un tema">
+                    </div>
                 </div>
-                <div class="col-2">
-                    <input class="btn btn-primary" type="button" value="Sobre un tema">
-                </div>
-                </div>
-
+            </form>
         </div>
     </section>
     <footer class='main' id='f1'>
@@ -100,6 +117,8 @@ session_start();
     </footer>
 </div>
 <script>
+
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
