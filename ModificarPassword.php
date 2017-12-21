@@ -9,15 +9,16 @@ use PHPMailer\PHPMailer\Exception;
 
 session_start();
 
-if (isset($_POST['code'])) {
-
+if (isset($_POST['password'])) {
     require_once('config.php');
     $email = $_GET['email'];
+    $recovery_code = $_GET['code'];
+    $password = $_POST['password'];
+    $hashed_password = crypt($password);
     $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
-    $result = mysqli_query($link, "update email from usuarios where recovery_code='$code'");
+    $sql = "update usuarios set password='$hashed_password' where email='$email' and recovery_code='$recovery_code'";
 
     if(!mysqli_query($link, $sql)) {
-        alert( "Error de inserción");
         die('Error: '.mysqli_error($link));
     } else {
         echo '<script> location.replace("./layout.php"); </script>';
@@ -47,7 +48,7 @@ if (isset($_POST['code'])) {
 </head>
 <body>
 <?php
-//$show_error = False;
+$show_error = False;
 //$email;
 //if (isset($_POST['password'])) {
 //    require_once('config.php');
@@ -91,14 +92,14 @@ if (isset($_POST['code'])) {
             <fieldset>
 
                 <legend align="center">Modificar password</legend>
-                <form action="./ModificarPassword.php?email=" + <?php echo $_GET['email']; ?> method="post">
+                <form action="./ModificarPassword.php?email=<?php echo $_GET['email']; ?>&code=<?php echo $_GET['code']; ?>" method="post">
                     <div style="padding: 20px; max-width: 240px; margin: 0 auto;">
                         <label for="input_password">Password:*</label>
-                        <input id="input_email" class="form-control" style="width: 200px" name="password"
-                               type="text" required><br>
+                        <input id="input_password" class="form-control" style="width: 200px" name="password"
+                               type="password" required><br>
                         <label for="input_repeat_password">Repeat password:*</label>
                         <input id="input_repeat_password" class="form-control" style="width: 200px" name="repeat_password"
-                               type="text" required><br>
+                               type="password" required><br>
                         <div style="max-width: 70px; margin: 0 auto;">
                             <input type="submit" class="btn btn-primary" value="Enviar">
                         </div>

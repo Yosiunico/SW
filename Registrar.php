@@ -25,6 +25,16 @@ session_start();
 <body>
 <?php
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 if (isset($_POST['email'])) {
     function alert($msj){
         echo "<script type='text/javascript'>alert('$msj'); </script>";
@@ -69,14 +79,14 @@ if (isset($_POST['email'])) {
     $password = $_POST['password'];
     $hashed_password = crypt($password);
     $repeat_password = $_POST['repeat_password'];
+    $random_recovery_code = generateRandomString(20);
     if(verify($email, $name_lastnames, $nick, $password, $repeat_password)){
         if($_FILES['image']['size'] > 0) {
             $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image, rol) VALUES ('$email','$name_lastnames','$nick','$hashed_password','$image', 'alumno')";
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, image, rol, recovery_code) VALUES ('$email','$name_lastnames','$nick','$hashed_password','$image', 'alumno', '$random_recovery_code')";
 
         }else{
-            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, rol) VALUES ('$email','$name_lastnames','$nick','$hashed_password', 'alumno')";
-
+            $sql = "INSERT INTO usuarios(email,name_lastnames,nick,password, rol, recovery_code) VALUES ('$email','$name_lastnames','$nick','$hashed_password', 'alumno', '$random_recovery_code')";
         }
 
 
