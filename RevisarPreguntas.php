@@ -174,7 +174,6 @@ if (!isset($_SESSION['email'])) {
 <script>
     function borrarPregunta() {
         if(confirm('Seguro?')){
-            alert('confirmar');
             id =  $("#select_pregunta").val();
             $.ajax({
                 url: "eliminarPregunta.php?id=" + $select.val(), cache: false, success: function(result){
@@ -183,7 +182,6 @@ if (!isset($_SESSION['email'])) {
             });
             updateDropdownList();
         }else{
-            alert('cancelar');
         }
 
 
