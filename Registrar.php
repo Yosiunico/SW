@@ -112,15 +112,19 @@ if (isset($_POST['email'])) {
     <nav class='main' id='n1' role='navigation'>
         <?php
         if (isset($_SESSION['email'])) {
-            echo "<span><a href='layout.php?logged_user=" . $_GET['logged_user'] . "'>Inicio</a></span>";
-            echo "<span><a href='./preguntasHTML5.php?logged_user=" . $_GET['logged_user'] . "'>Preguntas</a></span>";
-            echo "<span><a href='./GestionarPreguntas.php?logged_user=" . $_GET['logged_user'] . "'>Gestionar preguntas</a></span>";
-            echo "<span><a href='./creditos.php?logged_user=" . $_GET['logged_user'] . "'>Creditos</a></span>";
-            echo "<span><a href='./ClienteDeSW.php?logged_user=" . $_GET['logged_user'] . "'>Cliente consumidor del SW</a></span>";
+            echo "<span><a href='layout.php'>Inicio</a></span>";
+            if ($_SESSION['email'] != 'web000@ehu.es') {
+                echo "<span><a href='GestionarPreguntas.php'>Gestionar preguntas</a></span>";
+            } else {
+                echo "<span><a href='RevisarPreguntas.php'>Revisar preguntas</a></span>";
+            }
+            echo "<span><a href='./creditos.php'>Créditos</a></span>";
 
         } else {
             echo "<span><a href='layout.php'>Inicio</a></span>";
-            echo "<span><a href='./creditos.php'>Creditos</a></span>";
+            echo "<span><a href='./creditos.php'>Créditos</a></span>";
+            echo '<span><a href="RecuperarPassword.php">Recuperar contraseña</a></span>';
+            echo "<span><a href='./JuegoPreguntasInicio.php'>¿Cuánto sabes? >Pruébame</a></span>";
         }
         ?>
     </nav>

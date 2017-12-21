@@ -60,11 +60,23 @@ if (!isset($_SESSION['email'])) {
 
     </header>
     <nav class='main' id='n1' role='navigation'>
-        <span><a href='layout.php'>Inicio</a></span>
-        <span><a href='./preguntasHTML5.php'>Preguntas</a></span>
-        <span><a href='./GestionarPreguntas.php'>Gestionar preguntas</a></span>
-        <span><a href='./creditos.php'>Creditos</a></span>
-        <span><a href='./ClienteDeSW.php'>Cliente consumidor del SW</a></span>
+        <?php
+        if (isset($_SESSION['email'])) {
+            echo "<span><a href='layout.php'>Inicio</a></span>";
+            if ($_SESSION['email'] != 'web000@ehu.es') {
+                echo "<span><a href='GestionarPreguntas.php'>Gestionar preguntas</a></span>";
+            } else {
+                echo "<span><a href='RevisarPreguntas.php'>Revisar preguntas</a></span>";
+            }
+            echo "<span><a href='./creditos.php'>Créditos</a></span>";
+
+        } else {
+            echo "<span><a href='layout.php'>Inicio</a></span>";
+            echo "<span><a href='./creditos.php'>Créditos</a></span>";
+            echo '<span><a href="RecuperarPassword.php">Recuperar contraseña</a></span>';
+            echo "<span><a href='./JuegoPreguntasInicio.php'>¿Cuánto sabes? >Pruébame</a></span>";
+        }
+        ?>
     </nav>
     <section class="main" id="s1">
         <div>

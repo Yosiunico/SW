@@ -27,11 +27,19 @@ session_start();
 	<header class='main' id='h1'>
         <?php
         if (isset($_SESSION['email'])) {
-            echo '<span class="right"><a href="./layout.php" onclick="decrementarUsuarios()">Logout</a></span>';
+            echo "<span><a href='layout.php'>Inicio</a></span>";
+            if ($_SESSION['email'] != 'web000@ehu.es') {
+                echo "<span><a href='GestionarPreguntas.php'>Gestionar preguntas</a></span>";
+            } else {
+                echo "<span><a href='RevisarPreguntas.php'>Revisar preguntas</a></span>";
+            }
+            echo "<span><a href='./creditos.php'>Créditos</a></span>";
+
         } else {
-            echo '<span class="right"><a href="./Registrar.php">Registrarse</a></span>';
-            echo '<span> </span>';
-            echo '<span class="right"><a href="./Login.php">Login</a></span>';
+            echo "<span><a href='layout.php'>Inicio</a></span>";
+            echo "<span><a href='./creditos.php'>Créditos</a></span>";
+            echo '<span><a href="RecuperarPassword.php">Recuperar contraseña</a></span>';
+            echo "<span><a href='./JuegoPreguntasInicio.php'>¿Cuánto sabes? >Pruébame</a></span>";
         }
         ?>
         <div style="float: right;">
