@@ -75,6 +75,7 @@ session_start();
             } else {
                 echo "<span><a href='layout.php'>Inicio</a></span>";
                 echo "<span><a href='./creditos.php'>Creditos</a></span>";
+                echo '<span><a href="RecuperarPassword.php">Recuperar password</a></span>';
                 echo "<span><a href='./JuegoPreguntasInicio.php'>¡¡Jugar!!</a></span>";
             }
         ?>
