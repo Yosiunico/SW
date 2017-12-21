@@ -59,6 +59,8 @@ if (isset($_POST['email'])) {
             } else {
                 echo '<script>location.replace("./RevisarPreguntas.php");</script>';
             }
+        }else{
+            $show_error = True;
         }
     } else {
         $show_error = True;

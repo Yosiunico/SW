@@ -8,24 +8,32 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 session_start();
+$show_error = False;
 
 if (isset($_POST['password'])) {
     require_once('config.php');
     $email = $_GET['email'];
     $recovery_code = $_GET['code'];
     $password = $_POST['password'];
-    $hashed_password = crypt($password);
-    $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
-    $sql = "update usuarios set password='$hashed_password' where email='$email' and recovery_code='$recovery_code'";
+    $repeat_password = $_POST['repeat_password'];
+    if(strcmp($password, $repeat_password) == 0) {
+        $hashed_password = crypt($password);
+        $link = mysqli_connect($servidor, $usuario, $pass, $bbdd);
+        $sql = "update usuarios set password='$hashed_password' where email='$email' and recovery_code='$recovery_code'";
 
-    if(!mysqli_query($link, $sql)) {
-        die('Error: '.mysqli_error($link));
-    } else {
-        echo '<script> location.replace("./layout.php"); </script>';
+
+        if (!mysqli_query($link, $sql)) {
+            die('Error: ' . mysqli_error($link));
+        } else {
+            mysqli_close($link);
+            echo '<script> location.replace("./layout.php"); </script>';
+        }
+
+    }else{
+        $show_error = True;
     }
 
-    $result->close();
-    mysqli_close($link);
+
 }
 ?>
 
@@ -48,7 +56,7 @@ if (isset($_POST['password'])) {
 </head>
 <body>
 <?php
-$show_error = False;
+
 //$email;
 //if (isset($_POST['password'])) {
 //    require_once('config.php');
@@ -108,7 +116,7 @@ $show_error = False;
             </fieldset>
             <?php
             if ($show_error == True) {
-                echo "<p>Nombre de usuario o contraseña incorrectos</p>";
+                echo "<p>Las contraseñas no coinciden</p>";
             }
             ?>
 
